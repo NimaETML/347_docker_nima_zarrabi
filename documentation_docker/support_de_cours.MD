@@ -297,3 +297,17 @@ docker build . -t nimaetml/my-go-app:1.0
 docker push nimaetml/my-go-app:1.0
 
 ![push to docker hub](./doc_media/push_docker_image_to_dockerhub.png)
+
+# Docker compose
+
+![push to docker hub](./doc_media/authentificate_adminer.png)
+
+![push to docker hub](./doc_media/loggedin_adminer_as_admin.png)
+
+![push to docker hub](./doc_media/loggedin_adminer_no_login_needed.png)
+
+![push to docker hub](./doc_media/phpmyadmin_compose.png)
+
+![push to docker hub](./doc_media/adminer_compose.png)
+
+![push to docker hub](./doc_media/kanban_postgres_app_exited.png)

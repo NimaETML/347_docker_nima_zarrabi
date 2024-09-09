@@ -1,0 +1,35 @@
+services:
+  # New container "ex_06_db" for mysql database
+  ex_06_db:
+    image: mysql:latest # Set image to latest from mysql
+    restart: always # Docker will always attempt to restart the container if it exits
+    environment:
+      MYSQL_DATABASE: nimzar_db # Setup database
+      MYSQL_ROOT_PASSWORD: root # Set the password
+      MYSQL_USER: nimzar # Set database user name
+      MYSQL_PASSWORD: nimzar_pws # Set database password
+    ports:
+      - "3306:3306" # Set the ports
+    volumes:
+      - C:\data\mysql-c:/var/lib/mysql # Set path for storing database data, linked to the path data is stored by default
+
+  ex_06_phpmyadmin:
+    image: phpmyadmin:latest
+    links: # Links this container to:
+      - ex_06_db # ex_06_db
+    restart: always
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_PORT: 3306
+      PMA_HOST: ex_06_db # host must be "ex_06_db" because the database host container name is "ex_06_db"
+      PMA_USER: nimzar # Database user must be the same as db MYSQL_USER
+      PMA_PASSWORD: nimzar_pws # Database password must be the same as db MYSQL_PASSWORD
+    ports:
+      - 8080:80
+    depends_on:
+      - ex_06_db # Sets dependentrices; to run, phpmyadmin requires the container "db" to be running
+
+# Volume creation
+volumes:
+  db-data:  # Create volume "db-data" for persistant storage
+
